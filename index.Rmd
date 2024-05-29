@@ -1,71 +1,234 @@
 ---
-title: "A3: Incarceration"
+title: "incarceration"
 output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ### Introduction
 
-An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
+url \<-
+("<https://raw.githubusercontent.com/melaniewalsh/Neat-Datasets/main/us-prison-pop.csv>")
+
+rl \<- read.csv(url)
+
+View(rl)
+
+Racism still remains as a relevant issue up till today. One area where
+its effect could be seen is through the US prison system. incarceration
+rates and treatment in criminal justice has shown a systemic
+inequalities that dis proportionally effect marginalized people,
+particularly people of color. Historical trends have shown that people
+of color often received higher rates of imprisonment largely due to
+their ethnicity and race, also known as "over policing" on individuals
+of color and the war on drug.
+
+The variables I chose for this project is the populations of prisoners
+from different ethnicity. Such as white_prison_pop,
+black_prison_pop.This will help me gain a better understanding on the
+effects of incarceration in different races. In addition I will also be
+analyzing the different county city rates, for example their averages
+number of imprisonment. This will help me understand whether individuals
+from urban or rural areas are disproportionately represented in the
+prison population can shed light on how geographic factors intersect
+with race and ethnicity within the criminal justice system. other than
+that I will be using file 1 to do this.
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+Write a summary paragraph of findings that includes the 5 values
+calculated from your summary information R script
 
-These will likely be calculated using your DPLYR skills, answering questions such as: 
+1.  Proportion_White_Total: 0.379818311105928
 
-- What is the average value of my variable across all the counties (in the current year)?
-- Where is my variable the highest / lowest?
-- How much has my variable change over the last N years?
-
-Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
-
-### The Dataset
-
-Who collected the data?  
-How was the data collected or generated?  
-Why was the data collected?  
-How many observations (rows) are in your data?  
-How many features (columns) are in the data?  
-What, if any, ethical questions or questions of power do you need to consider when working with this data?  
-What are possible limitations or problems with this data?   (at least 200 words)
-
-
-### Trends Over Time Chart
-
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The first chart that you will create and include will show the trend over time of your variable/topic. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - This may mean showing the same measure for different locations or different racial groups. Think carefully about a meaningful comparison of locations (e.g., the top 10 counties in a state, top 10 states, etc.)
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+```         
+white_jail_population <- sum(df$white_jail_pop, na.rm = TRUE)
+proportion_white <- white_jail_population / total_jail_population
+print(paste("Proportion of Imprisonment for White individuals:", proportion_white))
 ```
 
-### Variable Comparison Chart
+2.  Proportion_Black_Total:0.340023702023979"
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+```         
+total_jail_population <- sum(df$total_jail_pop, na.rm = TRUE)
+black_jail_population <- sum(df$black_jail_pop, na.rm = TRUE)
+proportion_black <- black_jail_population / total_jail_population
+print(paste("Proportion of Imprisonment for Black individuals:", proportion_black))
+```
 
-The second chart that you will create and include will show how two different (continuous) variables are related to one another. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+3.  Highest_County: Los Angeles County, 23467.19 Total Pop.
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- If you choose to add a color encoding (not required), you need a legend for your different color and a clear legend title
+```         
+max_index <- which.max(df$total_jail_pop)
+Highest_County <- df[max_index, c("county_name", "total_jail_pop")]
+```
 
-### Map
+4.  Lowest_County \<- Clarke County, 0 total pop
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+```         
+min_index <- which.min(df$total_jail_pop)
+Lowest_County <- df[min_index, c("county_name", "total_jail_pop")]
+print(Lowest_County)
+```
 
-The last chart that you will create and include will show how a variable is distributed geographically. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+5.  Total_Black_Jail\<- 7891239
 
-- Your map needs a title
-- Your color scale needs a legend with a clear label
-- Use a map based coordinate system to set the aspect ratio of your map
+```         
+Total_Black_Jail <- sum(df$black_jail_pop, na.rm = TRUE)
+print(Total_Black_Jail)
+```
+
+6.  Total_White_Jail\<- 8814789
+
+```         
+Total_White_Jail <- sum(df$white_jail_pop, na.rm = TRUE)
+print(Total_White_Jail)
+```
+
+Summary Findings: Based on the findings above the proportion of
+imprisonment for white individuals is approximately 0.3798, meaning that
+approximately 37.98% of the total jail population consists of white
+individuals. This proportion is interesting in analyzing the extent of
+incarceration in US, especially considering the significantly higher
+overall white population compared to the black population. However,
+despite the stark difference in population of white and black people in
+US, the percentage of white individuals in jail remains close to that of
+black individuals.
+
+Similarly, the proportion of imprisonment for black individuals is
+approximately 0.3400, meaning that approximately 34.00% of the total
+jail population consists of black individuals.
+
+The analysis of the highest and lowest county jail populations also
+reveals significant disparities. For instance, LA County exhibits a much
+higher prison rate than Clarke County with the lowest prison rate. While
+this difference could is also due to the vast difference in their
+population sizes, it's essential to consider demographic factors.
+Despite LA County having a higher Hispanic, and Black population, Clarke
+County, with a higher percentage of white residents, has a lower
+imprisonment rates overall.
+
+Yet the most interesting findings in this is how the total jail
+populations for white and black people remains remarkably similar in
+size range. After adding up all the jail populations for white and black
+individuals across all states it is evident that white population has
+only 1,000,000 higher jail population. According to my research, the
+population of white individuals in the US is approximately 231,550,000,
+while the population of black individuals is approximately 46,900,000.
+Despite white population almost 5 times larger than black population the
+prison population is only 1000000 larger. This similarity in prison
+rates despite demographic differences highlights the skewed nature of
+incarceration in the United States. Showing that races still contributes
+to imprisonment rate.
+
+### The Data
+
+Who collected the data?\
+Vera Institute. The project was funded by the Robert W. Wilson
+Charitable Trust. How was the data collected or generated? The data is
+collected by analyzing two Bureau of Justice Statistics (BJS) data
+collections, which are the Census of Jails (COJ),and the Annual Survey
+of Jails (ASJ). COJ covers all jails and is completed every five to
+eight years ever since 1970,and ASJ covers around one-third of jails-and
+includes almost all of the largest jails-that has been conducted in
+non-census years since 1982.
+
+Why was the data collected?\
+Vera use this data in order to depict the jail and prison incarceration
+at county level. Before this, incarceration has traditionally centered
+on state level data which is effective for understanding the broad
+overview of racism in the United States,but lacks the details for
+officials-judges, prosecutors, who manage county level imprisonment
+causes and consequences. Therefore the Vera data provides with more
+detailed over view on incarceration in a county scale, which helps
+county level officers gain a better idea of the incarceration and come
+up with better consequences and policies.
+
+How many observations (rows) are in your data?\
+there are 153,811 rows.
+
+How many features (columns) are in the data?\
+There are 36 columns
+
+What, if any, ethical questions or questions of power do you need to
+consider when working with this data?\
+What are possible limitations or problems with this data? (at least 200
+words) When examining these types of data that categorize prison rates
+by race and county, ethical and power considerations become relevant
+topics. Data regarding race and imprisonment can be very sensitive,
+associated with racial stereotypes and biases. When used
+unintentionally, these analyses instead of highlighting racism issues
+could instead exacerbate discrimination against certain stereotype of
+marginalized groups. Therefore, when analyzing this data, it's important
+to be sensitive, ensuring that the interpretation doesn't highlight
+certain stereotypes or contribute to exacerbating existing racial
+marginalization. Moreover, the power dynamics within the criminal
+justice system must be acknowledged. These data sets involve systemic
+issues like over-policing marginalized communities and disparities in
+legal resources, reinforcing societal inequality. Understanding these
+contexts will help understand the power imbalances. In addition, there
+are also limitations with the data. The data is a broad overview of the
+number of races but lacks data and detail about the circumstances of
+each case. Since we mostly only deal with numerical data and don't have
+much access to the detailed overview of case by case, the conclusions
+may not be fully accurate. Interpreting raw incarceration rates can lead
+to wrong conclusions about the fairness and criminal justice system.
+Maybe in order for more accurate analysis, more detailed case overview
+could give a more fair idea. With more information regarding prison
+reasoning, socioeconomic factors, access to education, and healthcare
+may lead to better conclusions regarding incarceration rates. Therefore,
+the analysis should be approached with careful consideration and must be
+taken into consideration of other considerations as well from outsource.
+
+## Graph 1: Trends Over Time of Prison Population by Race
+
+I've included this stack bar graph to compare prison populations across
+different racial groups. Based on the graph it's evident that the Latino
+population has the highest representation in prisons. This observation
+reinforces the relationship between race and prison population rates.
+The bar graph effectively highlights this disparity over the years,
+providing a clear visual comparison. Furthermore, with the X axis
+showing the years, the graph also shows the progression on incarceration
+over the years.
+
+```{r CHART1_PALMY, echo = FALSE}
+source("CHART1_PALMY.R")
+plot(g1)
+```
+
+\`\`\``{r, echo = FALSE, code = readLines("chart1_example.R")}`
+
+## Graph 2: Relationship Between Total Population and Prison Population
+
+I have included a scatter plot to analyze the relationship between total
+population and prison population across various states. The graph
+depicts a positive correlation, indicating that as the population
+increases, so does the prison population, which is expected. However,
+there are a few outlier that either surpass or fall below this
+trend.When examining this relationship, we can gain insights into the
+extent of incarceration within a population and how it scales with
+population growth.
+
+```{r CHART2, echo = FALSE}
+source("CHARTNUMBER2.R")
+print(p2)
+```
+
+## Map in America Patterns Population
+
+I use map to model the total prison population across different states
+through the different color gradient. By modelling the population of
+states we can considering not only population numbers but also
+demographic composition. This approach can help uncover correlations
+between racial demographics and incarceration rates. For instance,
+states with higher minority populations might have higher rates of
+imprisonment, which may reflect a potential systemic biases or racial
+disparities within the criminal justice system
+
+```{r CHARTNUMBER3, echo = FALSE}
+source("CHARTNUMBER3copy")
+print(p5)
+
+```
 
