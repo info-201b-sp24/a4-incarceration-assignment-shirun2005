@@ -8,12 +8,6 @@ editor_options:
 
 ### Introduction
 
-url \<-
-("<https://raw.githubusercontent.com/melaniewalsh/Neat-Datasets/main/us-prison-pop.csv>")
-
-rl \<- read.csv(url)
-
-View(rl)
 
 Racism still remains as a relevant issue up till today. One area where
 its effect could be seen is through the US prison system. incarceration
@@ -42,49 +36,16 @@ calculated from your summary information R script
 
 1.  Proportion_White_Total: 0.379818311105928
 
-```         
-white_jail_population <- sum(df$white_jail_pop, na.rm = TRUE)
-proportion_white <- white_jail_population / total_jail_population
-print(paste("Proportion of Imprisonment for White individuals:", proportion_white))
-```
-
 2.  Proportion_Black_Total:0.340023702023979"
-
-```         
-total_jail_population <- sum(df$total_jail_pop, na.rm = TRUE)
-black_jail_population <- sum(df$black_jail_pop, na.rm = TRUE)
-proportion_black <- black_jail_population / total_jail_population
-print(paste("Proportion of Imprisonment for Black individuals:", proportion_black))
-```
 
 3.  Highest_County: Los Angeles County, 23467.19 Total Pop.
 
-```         
-max_index <- which.max(df$total_jail_pop)
-Highest_County <- df[max_index, c("county_name", "total_jail_pop")]
-```
+4.  Lowest_County <- Clarke County, 0 total pop
 
-4.  Lowest_County \<- Clarke County, 0 total pop
+5.  Total_Black_Jail <- 7891239
 
-```         
-min_index <- which.min(df$total_jail_pop)
-Lowest_County <- df[min_index, c("county_name", "total_jail_pop")]
-print(Lowest_County)
-```
 
-5.  Total_Black_Jail\<- 7891239
-
-```         
-Total_Black_Jail <- sum(df$black_jail_pop, na.rm = TRUE)
-print(Total_Black_Jail)
-```
-
-6.  Total_White_Jail\<- 8814789
-
-```         
-Total_White_Jail <- sum(df$white_jail_pop, na.rm = TRUE)
-print(Total_White_Jail)
-```
+6.  Total_White_Jail <- 8814789
 
 Summary Findings: Based on the findings above the proportion of
 imprisonment for white individuals is approximately 0.3798, meaning that
@@ -192,7 +153,7 @@ providing a clear visual comparison. Furthermore, with the X axis
 showing the years, the graph also shows the progression on incarceration
 over the years.
 
-```{r CHART1_PALMY, echo = FALSE}
+```{r CHART1_PALMY, echo = FALSE, message=FALSE, warning=FALSE}
 source("CHART1_PALMY.R")
 plot(g1)
 ```
@@ -210,7 +171,7 @@ trend.When examining this relationship, we can gain insights into the
 extent of incarceration within a population and how it scales with
 population growth.
 
-```{r CHART2, echo = FALSE}
+```{r CHART2, echo = FALSE, message=FALSE, warning=FALSE}
 source("CHARTNUMBER2.R")
 print(p2)
 ```
@@ -226,9 +187,7 @@ states with higher minority populations might have higher rates of
 imprisonment, which may reflect a potential systemic biases or racial
 disparities within the criminal justice system
 
-```{r CHARTNUMBER3, echo = FALSE}
-source("CHARTNUMBER3copy")
-print(p5)
-
+```{r CHARTNUMBER3, echo = FALSE, message=FALSE, warning=FALSE}
+source("CHARTNUMBERcopy.R")
+plot(p5)
 ```
-

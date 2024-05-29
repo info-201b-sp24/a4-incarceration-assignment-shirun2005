@@ -1,4 +1,4 @@
-url <- ("https://raw.githubusercontent.com/melaniewalsh/Neat-Datasets/main/us-prison-pop.csv")
+ url <- ("https://raw.githubusercontent.com/melaniewalsh/Neat-Datasets/main/us-prison-pop.csv")
 rl <- read.csv(url)
 
 ### Trends Over Time Chart
@@ -7,13 +7,6 @@ library(ggplot2)
 library(reshape2)
 library(readr) 
 
-View(rl)
-# Assuming your data frame is named rl
-# Check the structure of your data frame
-str(rl)
-
-# Check the first few rows of your data frame
-head(rl)
 
 # Load necessary packages
 library(ggplot2)
@@ -36,6 +29,6 @@ g1 <- ggplot(prison_pop_trends, aes(x = year, y = prison_population, color = rac
        color = "Race") +
   theme_minimal()
 
-plot(g1)
+
 
 

@@ -12,16 +12,7 @@ library(transformr)
 library(patchwork)  
 library(usmap)
 
-install.packages("usmap")
-install.packages(tidyverse)  
-install.packages(usmap)  
-install.packages(janitor) 
-install.packages(ggeasy)  
-install.packages(gganimate)  
-install.packages(transformr)  
-install.packages(patchwork)  
-install.packages(usmap)
-install.packages(PNWColors)
+
 
 library(readr) 
 url <-("https://raw.githubusercontent.com/melaniewalsh/Neat-Datasets/main/us-prison-pop.csv")
@@ -36,9 +27,6 @@ total_prison_pop_all <- rl %>%
 # unique(total_prison_pop$year)
 
 
-
-
-
 p5 <- plot_usmap(data = total_prison_pop_all, values = "total", labels=FALSE,color= "red") +
   scale_fill_continuous(low = "white", high = "red", 
                         name = "Population", 
@@ -48,6 +36,5 @@ p5 <- plot_usmap(data = total_prison_pop_all, values = "total", labels=FALSE,col
   theme(panel.background = element_rect(colour = "black"))
 
 
-plot(p5)
 
 
